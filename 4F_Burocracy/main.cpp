@@ -24,7 +24,7 @@ pair<uint64_t, uint64_t> CountCoins(int employee, vector<vector<int>>& subordina
 }
 
 int main() {
-    const rlim_t kStackSize = 16 * 1024 * 1024;   // min stack size = 16 MB
+    const rlim_t kStackSize = 16 * 1024 * 1024;
     struct rlimit rl;
     int result;
 

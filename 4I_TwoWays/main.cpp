@@ -5,7 +5,6 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-//#include <sys/resource.h>
 
 using namespace std;
 
@@ -58,12 +57,6 @@ pair<int, vector<int>> BFS(int start, int exclude, const vector<vector<int>>& gr
 
 // Основная функция для решения задачи
 uint64_t FindMaxProduct(int num_vertices, const vector<vector<int>>& graph) {
-
-    /*vector<vector<int>> graph(num_vertices + 1);
-    for (auto [u, v] : edges) {
-        graph[u].push_back(v);
-        graph[v].push_back(u);
-    }*/
     // Первый BFS: находим одну крайнюю вершину диаметра
     auto bfs_result_1 = BFS(1, -1, graph, num_vertices);
     int vertex_u = bfs_result_1.first;  // Вершина, самая удаленная от 1
@@ -141,12 +134,6 @@ uint64_t FindMaxProduct(int num_vertices, const vector<vector<int>>& graph) {
             right_path_length = max(right_path_length, diameter_length - i + max_depths[diameter_path[i]].first);
         }
         
-        /*if (diameter_length - i - 5 > 0) {
-            max_prod = max(max_prod, static_cast<uint64_t>(i + max_depths[diameter_path[i]].first) * (diameter_length - i - 5 + max_depths[diameter_path[i + 5]].first));
-        }
-        if (diameter_length - i - 4 > 0) {
-            max_prod = max(max_prod, static_cast<uint64_t>(i + max_depths[diameter_path[i]].first) * (diameter_length - i - 4 + max_depths[diameter_path[i + 4]].first));
-        }*/
         if (diameter_length - i - 3 > 0) {
             max_prod = max(max_prod, static_cast<uint64_t>(i + max_depths[diameter_path[i]].first) * (diameter_length - i - 3 + max_depths[diameter_path[i + 3]].first));
         }
@@ -164,11 +151,6 @@ uint64_t FindMaxProduct(int num_vertices, const vector<vector<int>>& graph) {
 }
 
 int main() {
-    /*const rlim_t kStackSize = 16 * 1024 * 1024;   // min stack size = 16 MB
-    struct rlimit rl;
-    int result;
-
-    result = getrlimit(RLIMIT_STACK, &rl);*/
     ios::sync_with_stdio(false);
     cin.tie(0);
 
@@ -183,34 +165,4 @@ int main() {
     }
 
     cout << FindMaxProduct(num_vertices, graph);  // Выводим результат
-    /*ifstream infile("C:\\Users\\User\\Downloads\\Telegram Desktop\\tests (2).txt");
-    string line;
-    while (getline(infile, line)) {
-        if (line.empty()) continue;
-
-        int N;
-        stringstream ss(line);
-        ss >> N;
-
-        vector<pair<int, int>> edges;
-        for (int i = 0; i < N - 1; i++) {
-            int u, v;
-            infile >> u >> v;
-            edges.emplace_back(u, v);
-        }
-
-        int expected_result;
-        infile >> expected_result;
-
-        long long result = FindMaxProduct(N, edges);
-
-        cout << "Expected: " << expected_result << ", Got: " << result << "\n";
-        if (result != expected_result) {
-            cout << "Test failed!\n";
-            return 1;
-        }
-    }
-
-    cout << "All tests passed!\n";
-    return 0;*/
 }

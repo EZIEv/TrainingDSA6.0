@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-//#include <sys/resource.h>
 
 using namespace std;
 
@@ -52,12 +51,6 @@ void CollectMarked(int node, int parent, vector<TreeNode>& tree, vector<vector<l
 }
 
 int main() {
-    const rlim_t kStackSize = 16 * 1024 * 1024;   // min stack size = 16 MB
-    struct rlimit rl;
-    int result;
-
-    result = getrlimit(RLIMIT_STACK, &rl);
-
     int n;
     cin >> n;
 
